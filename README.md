@@ -26,3 +26,12 @@ The photo folder holds one subfolder per course; `courses.json` maps each
 folder to its course, region and country. A folder named `_not-on-map` is skipped.
 
 Output in `out/`: `photos.geojson` and `previews/large`, `previews/thumb` (WebP, no EXIF).
+
+## Upload
+
+The previews are served from the public Cloud Storage bucket `morgado-geo-photos`
+(Frankfurt). Each feature carries `img_url` and `thumb_url` pointing there.
+
+```
+gcloud storage cp --recursive out\previews\large out\previews\thumb gs://morgado-geo-photos/ --cache-control="public, max-age=31536000" --content-type=image/webp
+```

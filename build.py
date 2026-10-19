@@ -21,6 +21,8 @@ COURSES = json.loads((HERE / "courses.json").read_text(encoding="utf-8"))
 TERMS = json.loads((HERE / "terms_de_en.json").read_text(encoding="utf-8"))
 OUT = HERE / "out"
 SKIP = {"_not-on-map"}
+# public bucket that serves out/previews (see README: upload)
+IMG_BASE = "https://storage.googleapis.com/morgado-geo-photos"
 
 BGR = "https://services.bgr.de/arcgis/rest/services/geologie/guek250/MapServer/identify"
 SGU = "https://maps3.sgu.se/geoserver/berg/ows"
@@ -139,7 +141,8 @@ def main(root):
             write_previews(path, slug)
             geo = geology_sweden(meta["lat"], meta["lon"]) if course["country"] == "Sweden" else geology_germany(meta["lat"], meta["lon"])
             time.sleep(0.3)  # be gentle with the survey services
-            props = {"id": slug, "file": path.name, **{k: v for k, v in course.items()}, **meta, **geo}
+            props = {"id": slug, "file": path.name, **course, **meta, **geo,
+                     "img_url": f"{IMG_BASE}/large/{slug}.webp", "thumb_url": f"{IMG_BASE}/thumb/{slug}.webp"}
             features.append({"type": "Feature", "geometry": {"type": "Point", "coordinates": [meta["lon"], meta["lat"]]}, "properties": props})
             print(f"{slug:32} {meta['date']}  {geo['geo_age'] or '-':30} {(geo['geo_rock'] or '-')[:60]}")
     OUT.mkdir(exist_ok=True)
