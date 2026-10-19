@@ -1,0 +1,20 @@
+{
+  "black-forest": {
+    "course": "Site Exploration in Engineering Geology",
+    "region": "Hesse and Black Forest",
+    "country": "Germany",
+    "year": "2013"
+  },
+  "harz": {
+    "course": "Economy and Ecology of Mineral Resources",
+    "region": "Harz",
+    "country": "Germany",
+    "year": "2014"
+  },
+  "sweden": {
+    "course": "Regional Geology and Excursion Geology",
+    "region": "West coast and Jämtland",
+    "country": "Sweden",
+    "year": "2013"
+  }
+}
