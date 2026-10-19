@@ -35,3 +35,9 @@ The previews are served from the public Cloud Storage bucket `morgado-geo-photos
 ```
 gcloud storage cp --recursive out\previews\large out\previews\thumb gs://morgado-geo-photos/ --cache-control="public, max-age=31536000" --content-type=image/webp
 ```
+
+## Map
+
+Public web map in ArcGIS Online, with the BGR GÜK250 and SGU bedrock layers,
+Arcade pop-ups and one bookmark per field trip:
+https://www.arcgis.com/apps/mapviewer/index.html?webmap=1a563f33274041efbc0cc80272f0ae15
